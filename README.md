@@ -1,7 +1,7 @@
 # Cracking the Coding Interview
 -------------------------------
 
-python solution to [Cracking the Coding Interview](http://www.crackingthecodinginterview.com).
+python solutions to [Cracking the Coding Interview](http://www.crackingthecodinginterview.com).
 
 ## Running the tests
 --------------------
