@@ -31,3 +31,14 @@ class Stack(object):
 
     def is_empty(self):
         return self.top is None
+
+    def to_list(self):
+        lst, node = [], self.top
+        while node:
+            lst.append(node.value)
+            node = node.next
+        return lst
+
+    def __str__(self):
+        return str(self.to_list())
+
