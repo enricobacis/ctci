@@ -1,6 +1,7 @@
 """Implement an algorithm to find the kth to last element of a singly linked list."""
 
 from linkedlist import Node
+import pytest
 
 
 def kth_to_last(node, k):
@@ -10,7 +11,11 @@ def kth_to_last(node, k):
         lst.append(node.value)
         node = node.next
 
-    return lst[len(lst) - k - 1]
+    idx = len(lst) - k - 1
+    if idx < 0:
+        raise IndexError('index out of bound')
+    else:
+        return lst[idx]
 
 
 def test_kth_to_last():
@@ -19,3 +24,12 @@ def test_kth_to_last():
 
     for k, element in enumerate(reversed(lst)):
         assert kth_to_last(head, k) == element
+
+def test_kth_to_last_failures():
+    head = Node.from_iterable(range(10))
+
+    with pytest.raises(IndexError):
+        kth_to_last(head, -1)
+
+    with pytest.raises(IndexError):
+        kth_to_last(head, 10)
