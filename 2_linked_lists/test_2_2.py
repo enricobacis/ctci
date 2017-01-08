@@ -18,18 +18,38 @@ def kth_to_last(node, k):
         return lst[idx]
 
 
-def test_kth_to_last():
+def kth_to_last2(node, k):
+    """time: O(n) space: O(1)"""
+    if k < 0: raise IndexError('index out of bound')
+
+    # move the exploration node k nodes above behind
+    behind = node
+    while k > 0:
+        if not node.next: raise IndexError('index out of bound')
+        node = node.next
+        k -= 1
+
+    # now move node and behind until node reaches the end
+    while node.next:
+        node = node.next
+        behind = behind.next
+
+    return behind.value
+
+
+def test_kth_to_last(fn):
     lst = list(range(10))
     head = Node.from_iterable(lst)
 
     for k, element in enumerate(reversed(lst)):
-        assert kth_to_last(head, k) == element
+        assert fn(head, k) == element
 
-def test_kth_to_last_failures():
+
+def test_kth_to_last_failures(fn):
     head = Node.from_iterable(range(10))
 
     with pytest.raises(IndexError):
-        kth_to_last(head, -1)
+        fn(head, -1)
 
     with pytest.raises(IndexError):
-        kth_to_last(head, 10)
+        fn(head, 10)
