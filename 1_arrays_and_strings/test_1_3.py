@@ -6,5 +6,5 @@ def URLify(string, length):
     return string.rstrip().replace(' ', '%20')
 
 
-def test_URLify():
-    assert URLify('Mr John Smith    ', 13) == 'Mr%20John%20Smith'
+def test_URLify(fn):
+    assert fn('Mr John Smith    ', 13) == 'Mr%20John%20Smith'

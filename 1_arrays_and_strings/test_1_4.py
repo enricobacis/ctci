@@ -11,8 +11,8 @@ def palindrome_permutation(string):
     return len(odds) <= 1
 
 
-def test_palindrome_permutation():
-    assert palindrome_permutation('a ab') == True
-    assert palindrome_permutation('a abb') == True
-    assert palindrome_permutation('a abc') == False
-    assert palindrome_permutation('Tact Coa') == True
+def test_palindrome_permutation(fn):
+    assert fn('a ab') == True
+    assert fn('a abb') == True
+    assert fn('a abc') == False
+    assert fn('Tact Coa') == True
