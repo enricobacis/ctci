@@ -20,7 +20,7 @@ def remove_dups(node):
             pred.next = node = node.next
 
 
-def test_remove_dups():
+def test_remove_dups(fn):
     head = Node.from_iterable([1,2,3,2,3,5,2,5,6,1])
-    remove_dups(head)
+    fn(head)
     assert head.to_list() == [1,2,3,5,6]

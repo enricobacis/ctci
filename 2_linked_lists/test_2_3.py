@@ -13,8 +13,8 @@ def delete_middle_node(node):
     node.next = node.next.next
 
 
-def test_delete_middle_node():
+def test_delete_middle_node(fn):
     head = Node.from_iterable('abcdef')
     c = head.next.next
-    delete_middle_node(c)
+    fn(c)
     assert head.to_list() == list('abdef')
