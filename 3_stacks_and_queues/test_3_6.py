@@ -30,7 +30,6 @@ class Dog(Animal):
         Animal.__init__(self, name)
 
 
-
 class Shelter(object):
 
     class _Animal(object):
@@ -46,7 +45,6 @@ class Shelter(object):
         self._dogs = deque()
         self._cats = deque()
 
-
     def enqueue(self, animal):
         if isinstance(animal, Dog):
             self._dogs.append(Shelter._Animal(animal))
@@ -55,32 +53,28 @@ class Shelter(object):
         else:
             raise AttributeError('this shelter only accepts dogs and cats')
 
-
     def dequeueAny(self):
         if not self._dogs: return self.dequeueCat()
         if not self._cats: return self.dequeueDog()
 
-        print self._dogs[0].id, self._cats[0].id
         if self._dogs[0].id < self._cats[0].id: return self.dequeueDog()
         else: return self.dequeueCat()
 
-
     def dequeueDog(self):
-        if not self._dogs: raise ValueError('no required animal available')
+        if not self._dogs: raise IndexError('no required animal available')
         return self._dogs.popleft().animal
 
-
     def dequeueCat(self):
-        if not self._cats: raise ValueError('no required animal available')
+        if not self._cats: raise IndexError('no required animal available')
         return self._cats.popleft().animal
 
 
 def test_animal_shelter():
     shelter = Shelter()
 
-    with pytest.raises(ValueError): shelter.dequeueAny()
-    with pytest.raises(ValueError): shelter.dequeueDog()
-    with pytest.raises(ValueError): shelter.dequeueCat()
+    with pytest.raises(IndexError): shelter.dequeueAny()
+    with pytest.raises(IndexError): shelter.dequeueDog()
+    with pytest.raises(IndexError): shelter.dequeueCat()
 
     with pytest.raises(AttributeError): shelter.enqueue(2.0)
 
@@ -88,7 +82,7 @@ def test_animal_shelter():
     cat_b = Cat('cat_b')
     shelter.enqueue(cat_a)
     shelter.enqueue(cat_b)
-    with pytest.raises(ValueError): shelter.dequeueDog()
+    with pytest.raises(IndexError): shelter.dequeueDog()
 
     dog_a = Dog('dog_a')
     dog_b = Dog('dog_b')
