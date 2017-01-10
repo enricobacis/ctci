@@ -7,6 +7,11 @@ class Node(object):
         self.value = value
         self.children = children
 
+    def __str__(self):
+        return 'BinaryNode(%s)' % self.value
+
+    __repr__ = __str__
+
 
 class BinaryNode(object):
     """Node class represent a node in a binary tree"""
@@ -17,3 +22,8 @@ class BinaryNode(object):
         self.value = value
         self.left = left
         self.right = right
+
+    def __str__(self):
+        return 'BinaryNode(%s)' % self.value
+
+    __repr__ = __str__
